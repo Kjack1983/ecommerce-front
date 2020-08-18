@@ -35,17 +35,21 @@ const Home = () => {
     },[])
 
     return (
-        <Layout title="Home" description="Node react Ecommerce App" className="container-fluid">
-            
-            <h4 className="mb-4">New Arrivals</h4>
-            <div className="row">
+        <Layout 
+            title="Home" 
+            description="Node react Ecommerce App" 
+            headerClass="home" 
+            className="container-fluid"
+        >
+            <h4 className="mt-3 mb-4">New Arrivals</h4>
+            <div className="row justify-content-center">
                 {productsByArrival.map((product, i) => ( 
                     <Card key={i} product={product}/>
                 ))}
             </div>
 
-            <h4 className="mb-4">Best Sellers</h4>
-            <div className="row">
+            <h4 className="mt-3 mb-4">Best Sellers</h4>
+            <div className="row justify-content-center">
                 {productsBySell.map((product, i) => ( 
                     <Card key={i} product={product}/>
                 ))}
