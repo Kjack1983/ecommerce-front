@@ -112,6 +112,7 @@ const Signup = () => {
             title="Signup" 
             description="Node react Ecommerce App Signup Page"
             className="container col-md-6 offset-md-3"
+            headerClass="signup"
         >
         {showSuccess()}
         {showError()}

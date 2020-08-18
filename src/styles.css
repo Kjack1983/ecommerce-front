@@ -9,19 +9,56 @@
 /**
  * Border radius
  */
- .product-img {
-     min-height: 100px;
- }
 
 .jumbotron {
     width: 30wh;
-    height: 30vh;
+    height: 25vh;
+}
+
+.card {
+    max-width:400px;
+}
+
+.product-img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+}
+
+.jumbotron.default {
+    background: linear-gradient(-45deg, #3f37af, #5861b1, #235668, #386e62);
     color: #fff;
-    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
     background-size: 400% 400%;
     -webkit-animation: Gradient 15s ease infinite;
     -moz-animation: Gradient 15s ease infinite;
     animation: Gradient 15s ease infinite;
+}
+
+.jumbotron.home {
+    background: linear-gradient(-45deg, #6252ee, #356641, #240988, #11570b);
+    color: #fff;
+    background-size: 400% 400%;
+    -webkit-animation: Gradient 15s ease infinite;
+    -moz-animation: Gradient 15s ease infinite;
+    animation: Gradient 15s ease infinite;  
+}
+
+.jumbotron.signup {
+    background: linear-gradient(-45deg, #3eb39f, #356641, #09881e, #149409);
+    color: #fff;
+    background-size: 400% 400%;
+    -webkit-animation: Gradient 15s ease infinite;
+    -moz-animation: Gradient 15s ease infinite;
+    animation: Gradient 15s ease infinite;  
+}
+
+.jumbotron.signin {
+    background: linear-gradient(-45deg, #551c26, #913d64, #88095e, #94094a);
+    color: #fff;
+    background-size: 400% 400%;
+    -webkit-animation: Gradient 15s ease infinite;
+    -moz-animation: Gradient 15s ease infinite;
+    animation: Gradient 15s ease infinite;  
 }
  
 @-webkit-keyframes Gradient {

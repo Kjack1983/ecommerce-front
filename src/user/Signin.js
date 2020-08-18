@@ -118,6 +118,7 @@ const Signin = () => {
             title="Signin" 
             description="Sign in to Node React Ecommerce"
             className="container col-md-6 offset-md-3"
+            headerClass="signin"
         >
         {showLoading()}
         {showError()}

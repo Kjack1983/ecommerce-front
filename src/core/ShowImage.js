@@ -8,8 +8,7 @@ export const ShowImage = ({ item, url }) => {
             <img 
                 src={`${LocalUrlParams.ApiUrl}/${url}/photo/${item._id}`} 
                 alt={item.name} 
-                className="mb-3"
-                style={{maxHeight: "100%", maxHeight: "100%"}}
+                className="mb-3 img-fluid"
             />
         </div>
     )
