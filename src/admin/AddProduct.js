@@ -74,9 +74,9 @@ const AddProduct = () => {
         setValues({...values, error: '', loading: true});
 
         createProduct(user._id, token, formData)
-        .then(response => {
-            if(response.error) {
-                setValues({...values, createdProduct: '', error: response.error})
+        .then(data => {
+            if(data.error) {
+                setValues({...values, createdProduct: '', error: data.error})
             } else {
                 setValues({
                     ...values,
@@ -89,10 +89,10 @@ const AddProduct = () => {
                     shipping: '',
                     loading: false,
                     formData: new FormData,
-                    createdProduct: response.name,  
+                    createdProduct: data.name,  
                 })
             }
-        })
+        }).catch(err => console.log('ERROR >>>>', err));
     }
 
     const newPostForm = () => (
