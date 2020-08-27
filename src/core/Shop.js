@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Layout from './Layout';
 import Card from './Card';
-import { getCategories } from './apiCore';
+import { getCategories, getFilteredProducts } from './apiCore';
 import { Checkbox } from './Checkbox';
 import { prices } from './fixedPrices';
 import RadioBox from './RadioBox';
@@ -16,6 +16,10 @@ const Shop = () => {
     })
     const [categories, setCategories] = useState([]);
     const [error, setError] = useState(false);
+    const [limit, setlimit] = useState(6);
+    const [skip, setSkip] = useState(0);
+    const [size, setSize] = useState(0);
+    const [filteredResults, setFilteredResults] = useState([]);
 
     const init = () => {
         getCategories().then(data => {
@@ -27,8 +31,46 @@ const Shop = () => {
         })
     }
 
+    const loadFilterResults = newFilters => {
+        getFilteredProducts(skip, limit, newFilters).then(data => {
+            if(data.error) {
+                setError(data.error);
+            } else {
+                setFilteredResults(data.data);
+                setSize(data.size)
+                setSkip(0)
+            }
+        })
+    }
+
+    const loadMore = () => {
+
+        let toSkip = skip + limit;
+
+        getFilteredProducts(toSkip, limit, myFilters.filters).then(data => {
+            if(data.error) {
+                setError(data.error);
+            } else {
+                setFilteredResults([...filteredResults, ...data.data]);
+                setSize(data.size)
+                setSkip(toSkip)
+            }
+        })
+    }
+
+    const loadMoreButton = () => {
+        return (
+            size > 0 && size >= limit && (
+                <button onClick={loadMore} className="btn btn-warning mb-5">
+                    Load More
+                </button>
+            )
+        )
+    }
+
     useEffect(() => {
         init();
+        loadFilterResults(skip, limit, myFilters.filters);
     },[]);
 
     const handleFilters = (filters, filterBy) => {
@@ -39,22 +81,21 @@ const Shop = () => {
             let pricesValues = handlePrices(filters);
             newFilters.filters[filterBy] = pricesValues;
         }
-
+        loadFilterResults(myFilters.filters);
         setMyFilters(newFilters)
     }
 
     const handlePrices = value => {
         const data = prices;
 
-        let fetchRange = [];
+        let priceRange = [];
         data.forEach((price, index) => {
             if(price._id === parseInt(value)) {
-                fetchRange = price.array;
+                priceRange = price.array;
             }
         });
 
-        return fetchRange
-
+        return priceRange;
     }
 
     return (
@@ -64,7 +105,7 @@ const Shop = () => {
             className="container-fluid"
         >
             <div className="row">
-                <div className="col-4">
+                <div className="col-2">
                     <h4>Filter by category</h4>
                     <ul>
                         {/* handle Filter we need to return the filters */}
@@ -86,8 +127,14 @@ const Shop = () => {
                         />
                     </ul>
                 </div>
-                <div className="col-8">
-                    {JSON.stringify(myFilters)}
+                <div className="col-10">
+                    <div className="row justify-content-center">
+                        {filteredResults.map((product, i) => ( 
+                            <Card key={i} product={product} />
+                        ))} 
+                    </div>
+                    <hr/>
+                    {loadMoreButton()}
                 </div>
             </div>
         </Layout>
