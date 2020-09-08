@@ -9,7 +9,7 @@ const Dashboard = () => {
 
     const userLinks = () => {
         return (
-            <div className="card">
+            <div className="card product-view">
                 <h4 className="card-header">User Links</h4>
                 <ul className="list-group">
                     <li className="list-group-item">
