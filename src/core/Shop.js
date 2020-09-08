@@ -130,7 +130,7 @@ const Shop = () => {
                 <div className="col-10">
                     <div className="row justify-content-center">
                         {filteredResults.map((product, i) => ( 
-                            <Card key={i} product={product} />
+                            <Card key={i} product={product} isProduct={false} />
                         ))} 
                     </div>
                     <hr/>

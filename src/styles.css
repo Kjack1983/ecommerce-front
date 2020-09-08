@@ -19,11 +19,54 @@
     max-width:400px;
 }
 
+.card a{
+    color: #fff;
+}
+
+a.nav-link {
+    color: rgb(53, 52, 52);
+}
+
+.card.product-view {
+    max-width:unset;
+}
+
 .product-img {
     width: 100%;
     max-width: 300px;
     height: auto;
 }
+
+/**
+ * single product page - product name
+ */
+
+.name {
+    background: rgb(51, 29, 129);
+    color: #fff;
+    font-weight: bold;
+}
+
+/* black shade from 10-1 */
+.black-10 {
+    background: #f2f2f2;
+}
+.black-9 {
+    background: #e6e6e6;
+}
+.black-8 {
+    background: #d9d9d9;
+}
+.black-7 {
+    background: #cccccc;
+}
+.black-6 {
+    background: #bfbfbf;
+}
+.black-5 {
+    background: #b3b3b3;
+}
+
 
 .jumbotron.default {
     background: linear-gradient(-45deg, #3f37af, #5861b1, #235668, #386e62);

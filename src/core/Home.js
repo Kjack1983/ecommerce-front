@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Layout from './Layout';
 import { getProducts } from './apiCore';
 import Card from './Card';
+import Search from './Search';
 
 const Home = () => {
     
@@ -41,6 +42,7 @@ const Home = () => {
             headerClass="home" 
             className="container-fluid"
         >
+            <Search />
             <h4 className="mt-3 mb-4">New Arrivals</h4>
             <div className="row justify-content-center">
                 {productsByArrival.map((product, i) => ( 

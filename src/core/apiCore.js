@@ -1,5 +1,5 @@
 import { LocalUrlParams }  from '../config';
-
+import queryString from 'query-string';
 /**
  * Fetch all Products.
  */
@@ -34,8 +34,6 @@ export const getCategories = () => {
  */
 export const getFilteredProducts = (skip, limit, filters = {}) => {
 
-    console.log('limit :>> ', limit);
-
     const data = {
         limit, 
         skip, 
@@ -52,4 +50,41 @@ export const getFilteredProducts = (skip, limit, filters = {}) => {
     })
     .then(response => response.json())
     .catch(error => console.table(error))
+}
+
+export const list = params => {
+    const query = queryString.stringify(params);
+    
+    return fetch(`${LocalUrlParams.ApiUrl}/products/search?${query}`, {
+        method: "GET"
+    })
+    .then(response => {
+        console.log(response);
+        return response.json()
+    })
+    .catch(err => {
+        console.log(err)
+    })
+}
+
+/**
+ * Fetch all categories
+ */
+export const read = (productId) => {
+    return fetch(`${LocalUrlParams.ApiUrl}/product/${productId}`, {
+        method: "GET"
+    })
+    .then(response => response.json())
+    .catch(err => console.table(err));
+}
+
+/**
+ * Fetch all categories
+ */
+export const listRelated = (productId) => {
+    return fetch(`${LocalUrlParams.ApiUrl}/product/related/${productId}`, {
+        method: "GET"
+    })
+    .then(response => response.json())
+    .catch(err => console.table(err));
 }
