@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { getCategories, list } from './apiCore';
 import Card from './Card';
+import { CardProvider } from './cardhandler/CardContext';
 
 const Search = () => {
 
@@ -74,10 +75,15 @@ const Search = () => {
                 </h2>
                 <div className="row justify-content-center border-info">
                     {results.map((p, i) => (
-                        <Card 
+                        <CardProvider
                             key={i} 
-                            product={p} 
-                        />
+                            product={p}
+                        >
+                            <Card 
+                                key={i} 
+                                product={p} 
+                            />
+                        </CardProvider>
                     ))}
                 </div>
             </div>
