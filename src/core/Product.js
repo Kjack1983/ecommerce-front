@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Layout from './Layout';
 import { listRelated, read } from './apiCore';
 import Card from './Card';
+import { CardProvider } from './cardhandler/CardContext';
 
 const Product = (props) => {
 
@@ -58,8 +59,14 @@ const Product = (props) => {
                 {relatedProduct.length ? (<div className="col-4">
                     <h4>Related products</h4>
                     {relatedProduct.map((p, i) => (
-                        <div className="mb-3">
-                            <Card key={i} product={p} isProduct={true} />
+                        <div key={p._id} className="mb-3">
+                            <CardProvider
+                                key={i} 
+                                product={p}
+                                isProduct={false}
+                            >
+                                <Card key={i} product={p} isProduct={true} />
+                            </CardProvider>
                         </div>
                     ))}
                 </div>) : ('')}

@@ -3,6 +3,7 @@ import Layout from './Layout';
 import { getProducts } from './apiCore';
 import Card from './Card';
 import Search from './Search';
+import { CardProvider } from './cardhandler/CardContext';
 
 const Home = () => {
     
@@ -45,15 +46,25 @@ const Home = () => {
             <Search />
             <h4 className="mt-3 mb-4">New Arrivals</h4>
             <div className="row justify-content-center">
-                {productsByArrival.map((product, i) => ( 
-                    <Card key={i} product={product}/>
+                {productsByArrival.map((product, i) => (
+                    <CardProvider
+                        key={i} 
+                        product={product} 
+                    >
+                        <Card key={i} product={product}/>
+                    </CardProvider>
                 ))}
             </div>
 
             <h4 className="mt-3 mb-4">Best Sellers</h4>
             <div className="row justify-content-center">
                 {productsBySell.map((product, i) => ( 
-                    <Card key={i} product={product}/>
+                    <CardProvider
+                        key={i} 
+                        product={product} 
+                    >
+                        <Card key={i} product={product}/>
+                    </CardProvider>
                 ))}
             </div>
 

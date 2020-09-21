@@ -5,6 +5,7 @@ import { getCategories, getFilteredProducts } from './apiCore';
 import { Checkbox } from './Checkbox';
 import { prices } from './fixedPrices';
 import RadioBox from './RadioBox';
+import { CardProvider } from './cardhandler/CardContext';
 
 const Shop = () => {
 
@@ -130,8 +131,14 @@ const Shop = () => {
                 <div className="col-10">
                     <div className="row justify-content-center">
                         {filteredResults.map((product, i) => ( 
-                            <Card key={i} product={product} isProduct={false} />
-                        ))} 
+                            <CardProvider
+                                key={i} 
+                                product={product} 
+                                isProduct={false}
+                            >
+                                <Card key={i} product={product} isProduct={false} />
+                            </CardProvider>
+                        ))}
                     </div>
                     <hr/>
                     {loadMoreButton()}

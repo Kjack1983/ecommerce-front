@@ -2,6 +2,7 @@ import React, {Fragment} from 'react'
 // withRouter access the url history.
 import { Link, withRouter } from 'react-router-dom';
 import { signout, isAuthenticated } from '../auth';
+import { itemTotal } from './cartHelper';
 
 const isActive = (history, path) => {
     if (history.location.pathname === path) {
@@ -24,6 +25,15 @@ const Menu = ({ history }) => (
                 <Link className="nav-link" style={isActive(history, '/shop')} to="/shop">Shop</Link>
             </li>
             
+            <li className="nav-item">
+                {/* to = href */}
+                <Link 
+                    className="nav-link" 
+                    style={isActive(history, '/cart')} 
+                    to="/cart">Cart 
+                    <sup><small className="cart-badge ml-1">{itemTotal()}</small></sup></Link>
+            </li>
+
             {isAuthenticated() && isAuthenticated().user.role === 0 && (     
                 <li className="nav-item">
                     {/* to = href */}
